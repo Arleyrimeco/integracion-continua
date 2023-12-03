@@ -7,15 +7,27 @@ pipeline {
       }
     }
 
+    stage('Build') {
+      steps {
+        echo 'Compilacion'
+      }
+    }
+
+    stage('IC') {
+      steps {
+        sh 'docker-compose up -d --build'
+      }
+    }
+
     stage('Test') {
       steps {
-        echo 'Etapa Test en desarrollo. OK'
+        echo 'Pruebas'
       }
     }
 
     stage('Deploy') {
       steps {
-        sh 'docker-compose up -d --build'
+        echo 'Deploy'
       }
     }
 
