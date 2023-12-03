@@ -12,7 +12,19 @@ pipeline {
             steps {
                 sh "docker push arleyrimeco/integracion-continua:1.0.0-${BUILD_ID}"
             }
-            
         }
+        stage('Test') {
+            steps {
+                echo "Etapa Test en desarrollo"
+            }
+        }
+
+        stage('Deploy') {
+                    steps {
+                        echo "Validacion con Jenkins"
+                    }
+        }
+
+
     }
 }
