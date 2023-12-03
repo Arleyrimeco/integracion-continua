@@ -1,21 +1,32 @@
 pipeline {
   agent any
   stages {
-    stage('Pre-Build') {
-      steps {
-        echo 'Espacio de trabajo'
+    stage('Build') {
+      parallel {
+        stage('Build') {
+          steps {
+            echo 'Building'
+          }
+        }
+
+        stage('ParallelBuild') {
+          steps {
+            echo 'Parallel build'
+          }
+        }
+
       }
     }
 
     stage('Test') {
       steps {
-        echo 'Etapa Test en desarrollo. OK'
+        echo 'Testing'
       }
     }
 
     stage('Deploy') {
       steps {
-        sh 'docker-compose up -d --build'
+        sh 'Deploying'
       }
     }
 
