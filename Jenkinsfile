@@ -15,13 +15,13 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Etapa Test en desarrollo"
+                echo "Etapa Test en desarrollo. OK"
             }
         }
 
         stage('Deploy') {
                     steps {
-                        echo "Validacion con Jenkins"
+                        echo "Validacion con Jenkins. OK"
                     }
         }
 
