@@ -2,17 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('docker build') {
+        stage('Build') {
             steps {
-                sh "docker build -f integracion-continua/Dockerfile -t arleyrimeco/integracion-continua:1.0.0-${BUILD_ID} integracion-continua"
+                sh "Etapa BUILD en validacion"
             }
             
         }
-        stage('docker push') {
-            steps {
-                sh "docker push arleyrimeco/integracion-continua:1.0.0-${BUILD_ID}"
-            }
-        }
+
         stage('Test') {
             steps {
                 echo "Etapa Test en desarrollo. OK"
@@ -21,7 +17,7 @@ pipeline {
 
         stage('Deploy') {
                     steps {
-                        echo "Validacion con Jenkins. OK"
+                        sh "docker-compose up -d --build"
                     }
         }
 
