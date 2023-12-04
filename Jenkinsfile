@@ -1,30 +1,34 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('docker build') {
-            steps {
-                sh "docker build -f integracion-continua/Dockerfile -t arleyrimeco/integracion-continua:1.0.0-${BUILD_ID} integracion-continua"
-            }
-            
-        }
-        stage('docker push') {
-            steps {
-                sh "docker push arleyrimeco/integracion-continua:1.0.0-${BUILD_ID}"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "Etapa Test en desarrollo"
-            }
+  agent any
+  stages {
+    stage('Build') {
+      parallel {
+        stage('Build') {
+          steps {
+            echo 'Building'
+          }
         }
 
-        stage('Deploy') {
-                    steps {
-                        echo "Validacion con Jenkins"
-                    }
+        stage('ParallelBuild') {
+          steps {
+            echo 'Parallel build'
+          }
         }
 
-
+      }
     }
+
+    stage('Test') {
+      steps {
+        echo 'Testing'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'Deploying'
+      }
+    }
+
+  }
 }
