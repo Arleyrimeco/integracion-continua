@@ -7,6 +7,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12">
+                <div><li class="nav-item"><span>Registro usuario</span></li></div>
                 <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
                     <div>
                         <label class="form-label">Email</label>
@@ -18,11 +19,12 @@
                     </div>
                     <br>
                     <div>
-                        <button type="submit"  class="btn btn-primary">Enviar</button>          
+                        <button type="submit"  class="btn btn-primary">Enviar</button>  
+                        <button class="btn btn-info" (click)="onClick()">Login With Google</button>  
                     </div>
                 </form>  
                 <br>
-                <button class="btn btn-info" (click)="onClick()">Login With Google</button>  
+                 
             </div>
         </div>
     </div>
